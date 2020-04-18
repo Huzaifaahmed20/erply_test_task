@@ -1,3 +1,4 @@
+import 'package:erply_test_task/widgets/ShowAlert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 //screens
@@ -12,13 +13,17 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context);
     void _onLogin() async {
-      final auth = Provider.of<Auth>(context, listen: false);
-      await auth.login(
+      final response = await auth.login(
         _accountNoController.text,
         _usernameController.text,
         _passwordController.text,
       );
+      if (response != 'success') {
+        showAlert(context, 'Error', response);
+        return;
+      }
       Navigator.of(context).pushReplacementNamed(ProductsScreen.routeName);
     }
 
@@ -73,9 +78,12 @@ class LoginScreen extends StatelessWidget {
                   child: RaisedButton.icon(
                     color: Colors.purpleAccent,
                     textColor: Colors.white,
-                    onPressed: _onLogin,
+                    onPressed: auth.isLoading ? null : _onLogin,
                     icon: Icon(Icons.arrow_forward, color: Colors.white),
-                    label: Text('Login'),
+                    label: auth.isLoading
+                        ? CircularProgressIndicator(
+                            backgroundColor: Colors.white)
+                        : Text('Login'),
                   ),
                 ),
               )

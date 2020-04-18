@@ -15,6 +15,11 @@ class ProductsScreen extends StatelessWidget {
           future: product.fetchProducts(),
           builder: (context, snapshot) {
             List products = snapshot.data;
+            if (!snapshot.hasData) {
+              return Center(
+                child: Text('No Products Found'),
+              );
+            }
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             }
