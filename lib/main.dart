@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 //screens
 import './screens/LoginScreen.dart';
+import './screens/ProductsScreen.dart';
 //providers
 import './providers/Auth.dart';
 import './providers/Products.dart';
@@ -21,9 +21,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Erply Test Task',
         theme: ThemeData(
-          primarySwatch: Colors.purple,
+          primarySwatch: Colors.teal,
         ),
         home: LoginScreen(),
+        routes: {
+          ProductsScreen.routeName: (_) => ProductsScreen(),
+        },
       ),
     );
   }

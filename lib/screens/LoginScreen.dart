@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+//screens
+import '../screens/ProductsScreen.dart';
 // providers
 import '../providers/Auth.dart';
 
@@ -18,6 +19,7 @@ class LoginScreen extends StatelessWidget {
         _usernameController.text,
         _passwordController.text,
       );
+      Navigator.of(context).pushReplacementNamed(ProductsScreen.routeName);
     }
 
     return Scaffold(
@@ -69,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: RaisedButton.icon(
-                    color: Colors.green,
+                    color: Colors.purpleAccent,
                     textColor: Colors.white,
                     onPressed: _onLogin,
                     icon: Icon(Icons.arrow_forward, color: Colors.white),
