@@ -18,8 +18,7 @@ class Auth extends ChangeNotifier {
 
   final utils = Utils();
   final errorCodes = ErrorCodes();
-  Future<String> login(
-      String accountNumber, String userName, String password) async {
+  Future<String> login(String accountNumber, String userName, String password) async {
     setState(ViewState.Busy);
     final prefs = await SharedPreferences.getInstance();
     final url =

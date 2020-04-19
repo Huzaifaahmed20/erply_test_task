@@ -6,6 +6,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('${product['price']}');
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.transparent,
@@ -16,7 +17,20 @@ class ProductItem extends StatelessWidget {
               : product['images'][0]['smallURL'],
         ),
       ),
-      title: Text('${product['name']}'),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            '${product['name']}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Text(
+            '${product['code']}',
+            style: TextStyle(color: Colors.grey),
+          ),
+        ],
+      ),
+      trailing: Text('\$${product['price']}'),
       subtitle: Text('${product['description']}'),
     );
   }
