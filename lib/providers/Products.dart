@@ -17,16 +17,14 @@ class Products extends ChangeNotifier {
     final response = await http.get(url);
     final data = json.decode(response.body);
     // data['records'].forEach((index, product) {
-    //   print('$product');
-    // loadedProducts.add(Product(
-    //   id: productId,
-    //   title: product['title'],
-    //   description: product['description'],
-    //   price: product['price'],
-    //   imageUrl: product['imageUrl'],
-    //   isFavorite: favoriteData == null ? false : favoriteData[productId] ?? false,
-    // ));
+    //   loadedProducts.add(Product(
+    //     name: product['name'],
+    //     description: product['description'],
+    //     price: product['price'],
+    //     images: product['images'],
+    //   ));
     // });
+    // print(loadedProducts);
     notifyListeners();
     return data['records'];
   }

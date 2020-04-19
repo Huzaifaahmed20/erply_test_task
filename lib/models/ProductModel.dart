@@ -3,13 +3,13 @@ class Product {
   final String name;
   final String description;
   final double price;
-  final String imageUrl;
+  final List images;
 
   Product({
     this.code,
     this.name,
     this.description,
     this.price,
-    this.imageUrl,
+    this.images,
   });
 }

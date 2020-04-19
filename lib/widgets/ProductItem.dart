@@ -8,7 +8,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     List productImages = product['images'];
     const placeHolderImage =
-        'https://icons.iconarchive.com/icons/iconsmind/outline/512/Shopping-Cart-icon.png';
+        'https://wolper.com.au/wp-content/uploads/2017/10/image-placeholder.jpg';
     return Card(
       child: ListTile(
           leading: CircleAvatar(
@@ -46,9 +46,10 @@ class ProductItem extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
                               child: FadeInImage.assetNetwork(
-                                placeholder: placeHolderImage,
+                                placeholder: 'assets/images/cart.png',
                                 image: item['smallURL'],
-                                fit: BoxFit.fill,
+                                height: 100,
+                                width: 100,
                               ),
                             );
                           }).toList(),
