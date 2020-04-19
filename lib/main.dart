@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.teal,
         ),
-        home: LoginScreen(),
+        home: Consumer<Products>(
+          builder: (ctx, auth, child) => auth.isAuth ? ProductsScreen() : LoginScreen(),
+        ),
         routes: {
           ProductsScreen.routeName: (_) => ProductsScreen(),
         },

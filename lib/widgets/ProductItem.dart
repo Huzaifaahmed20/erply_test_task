@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: Text('\$${product['price']}'),
           subtitle: SizedBox(
-            height: productImages != null ? 100 : 50,
+            height: productImages != null ? 100 : 70,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

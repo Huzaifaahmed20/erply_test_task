@@ -33,7 +33,13 @@ class Auth extends ChangeNotifier {
       return error;
     }
     final sessionKey = data["records"][0]['sessionKey'];
-    prefs.setString('sessionKey', sessionKey);
+    final Map<String, String> userData = {
+      'accountNumber': accountNumber,
+      'userName': userName,
+      'password': password,
+      'sessionKey': sessionKey
+    };
+    prefs.setString('userData', json.encode(userData));
     setState(ViewState.Idle);
     notifyListeners();
     return 'success';
