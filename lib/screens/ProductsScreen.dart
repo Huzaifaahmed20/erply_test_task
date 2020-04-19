@@ -29,11 +29,9 @@ class ProductsScreen extends StatelessWidget {
             return RefreshIndicator(
               onRefresh: product.fetchProducts,
               child: ListView.builder(
+                padding: const EdgeInsets.all(10),
                 itemCount: products.length,
-                itemBuilder: (_, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ProductItem(product: products[index]),
-                ),
+                itemBuilder: (_, index) => ProductItem(product: products[index]),
               ),
             );
           }),

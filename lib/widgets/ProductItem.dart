@@ -6,32 +6,58 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('${product['price']}');
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 30,
-        backgroundImage: NetworkImage(
-          product['images'] == null
-              ? 'https://icons.iconarchive.com/icons/iconsmind/outline/512/Shopping-Cart-icon.png'
-              : product['images'][0]['smallURL'],
-        ),
-      ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            '${product['name']}',
-            style: TextStyle(fontWeight: FontWeight.bold),
+    List productImages = product['images'];
+    const placeHolderImage =
+        'https://icons.iconarchive.com/icons/iconsmind/outline/512/Shopping-Cart-icon.png';
+    return Card(
+      child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            radius: 30,
+            backgroundImage: NetworkImage(
+              product['images'] == null ? placeHolderImage : product['images'][0]['smallURL'],
+            ),
           ),
-          Text(
-            '${product['code']}',
-            style: TextStyle(color: Colors.grey),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                '${product['name']}',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '${product['code']}',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
           ),
-        ],
-      ),
-      trailing: Text('\$${product['price']}'),
-      subtitle: Text('${product['description']}'),
+          trailing: Text('\$${product['price']}'),
+          subtitle: SizedBox(
+            height: productImages != null ? 100 : 50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('${product['description']}'),
+                productImages != null
+                    ? Expanded(
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: productImages.map((item) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: FadeInImage.assetNetwork(
+                                placeholder: placeHolderImage,
+                                image: item['smallURL'],
+                                fit: BoxFit.fill,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      )
+                    : Text('No images found')
+              ],
+            ),
+          )),
     );
   }
 }
